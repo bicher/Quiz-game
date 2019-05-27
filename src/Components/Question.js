@@ -24,18 +24,18 @@ class Question extends Component {
         </div>
         );
     }
-    getAnswer(event) {
+    getAnswer(e) {
         let getAllLi = document.getElementsByTagName("li");
         for (let i = 0; i < getAllLi.length; i++) {
-            if (getAllLi[i].id === event.target.innerHTML) {
-                let x = document.getElementById(getAllLi[i].id).style.backgroundColor = "yellow";
+            if (getAllLi[i].id === e.target.innerHTML) {
+                document.getElementById(getAllLi[i].id).style.backgroundColor = "yellow";
             }
             else {
                 getAllLi[i].style.backgroundColor = "white";
             }
         }
         let i = document.getElementsByTagName("h4");
-        this.props.getAnswer(event.target.innerHTML, i[0].id);
+        this.props.getAnswer(e.target.innerHTML, i[0].id);
     }
 
 }

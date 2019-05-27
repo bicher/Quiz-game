@@ -3,6 +3,10 @@ import './App.css';
 import Question from './Components/Question';
 import jsonFile from './Questions.js';
 
+document.addEventListener('DOMContentLoaded', function(event) {
+  document.getElementById("prev").disabled = true;
+});
+
 class App extends Component {
   state = {
     allQuestions: [],
@@ -10,10 +14,12 @@ class App extends Component {
     answers: [],
     score: []
   }
+
   componentDidMount() {
     this.setState({ allQuestions: jsonFile });
+    debugger
     if (this.state.allQuestions.length > 0) {
-      document.getElementById("prev").disabled = true;
+      
     }
   }
 
@@ -28,6 +34,9 @@ class App extends Component {
                 <button className="btn btn-secondary float-left" id="prev" onClick={this.prev.bind(this)}>Prev</button>
                 <button className="btn btn-secondary float-right" id="next" onClick={this.next.bind(this)}>Next</button>
                 {this.state.score.map(s => <div className="text-center">Your Score is: {s.score}</div>)}
+                <div className="row">
+                <button className="btn btn-secondary mx-auto mt-2" id="start" style={{ display: 'none' }} onClick={this.newGame.bind(this)}>Restart Game!</button>
+                </div>
               </div>
             </div>
           </div>
@@ -55,8 +64,9 @@ class App extends Component {
       let allAnswers = this.state.answers;
       let sumOfCorrect = allAnswers.filter((answer, i) => answer.id == allQuestions[i].id && answer.answer == allQuestions[i].correct);
       let score = (100 / allQuestions.length) * sumOfCorrect.length;
-      let newScore = [{ score: score }];
-      this.setState({ score: newScore });
+      let scoreToDisplay = [{ score: score }];
+      this.setState({ score: scoreToDisplay });
+      document.getElementById("start").style.display = "block";
 
     }
   }
@@ -82,6 +92,9 @@ class App extends Component {
       newAnswers.push({ id: i, answer: answer });
     }
     this.setState({ answers: newAnswers });
+  }
+  newGame(){
+    window.location.reload();
   }
 }
 
