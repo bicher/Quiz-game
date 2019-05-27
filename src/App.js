@@ -17,10 +17,6 @@ class App extends Component {
 
   componentDidMount() {
     this.setState({ allQuestions: jsonFile });
-    debugger
-    if (this.state.allQuestions.length > 0) {
-      
-    }
   }
 
   render() {
