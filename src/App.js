@@ -48,25 +48,31 @@ class App extends Component {
 
   }
   next() {
-    if (this.state.counter < this.state.allQuestions.length) {
-      this.setState({ counter: this.state.counter + 1 });
-      document.getElementById("prev").disabled = false;
-      if (this.state.counter === this.state.allQuestions.length - 1) {
-        document.getElementById("next").innerHTML = "Done";
+    debugger
+    if(this.state.answers.length != this.state.counter ){
+      alert('You must choose answer!');
+    }
+    else{
+      if (this.state.counter < this.state.allQuestions.length) {
+        this.setState({ counter: this.state.counter + 1 });
+        document.getElementById("prev").disabled = false;
+        if (this.state.counter === this.state.allQuestions.length - 1) {
+          document.getElementById("next").innerHTML = "Done";
+        }
+      }
+      else {
+        let allQuestions = this.state.allQuestions;
+        let allAnswers = this.state.answers;
+        let sumOfCorrect = allAnswers.filter((answer, i) => answer.id == allQuestions[i].id && answer.answer == allQuestions[i].correct);
+        let score = (100 / allQuestions.length) * sumOfCorrect.length;
+        let scoreToDisplay = [{ score: score }];
+        this.setState({ score: scoreToDisplay });
+        document.getElementById("start").style.display = "block";
       }
     }
-    else {
-      let allQuestions = this.state.allQuestions;
-      let allAnswers = this.state.answers;
-      let sumOfCorrect = allAnswers.filter((answer, i) => answer.id == allQuestions[i].id && answer.answer == allQuestions[i].correct);
-      let score = (100 / allQuestions.length) * sumOfCorrect.length;
-      let scoreToDisplay = [{ score: score }];
-      this.setState({ score: scoreToDisplay });
-      document.getElementById("start").style.display = "block";
-
-    }
   }
-
+    
+    
   prev() {
     if (this.state.counter > 1) {
       this.setState({ counter: this.state.counter - 1 });

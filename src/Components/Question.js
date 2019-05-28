@@ -28,6 +28,7 @@ class Question extends Component {
         let getAllLi = document.getElementsByTagName("li");
         for (let i = 0; i < getAllLi.length; i++) {
             if (getAllLi[i].id === e.target.innerHTML) {
+                debugger
                 document.getElementById(getAllLi[i].id).style.backgroundColor = "yellow";
             }
             else {
