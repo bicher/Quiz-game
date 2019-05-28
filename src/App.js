@@ -48,7 +48,6 @@ class App extends Component {
 
   }
   next() {
-    debugger
     if(this.state.answers.length != this.state.counter ){
       alert('You must choose answer!');
     }

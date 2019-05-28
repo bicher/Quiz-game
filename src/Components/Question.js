@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 
 
 class Question extends Component {
-    state = {
-    }
     render() {
         return (
             <div className="Question mt-5">
@@ -28,7 +26,6 @@ class Question extends Component {
         let getAllLi = document.getElementsByTagName("li");
         for (let i = 0; i < getAllLi.length; i++) {
             if (getAllLi[i].id === e.target.innerHTML) {
-                debugger
                 document.getElementById(getAllLi[i].id).style.backgroundColor = "yellow";
             }
             else {
